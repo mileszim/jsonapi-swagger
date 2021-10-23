@@ -36,7 +36,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
               items: {
                 type: :object,
                 properties: {
-                  id: { type: :string, description: 'ID'},
+                  id: { type: :string, format: :uuid, description: 'ID'},
                   links: {
                     type: :object,
                     properties: {
@@ -121,7 +121,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
             data: {
                 type: :object,
                 properties: {
-                  id: { type: :string, description: 'ID'},
+                  id: { type: :string, format: :uuid, description: 'ID'},
                   type: { type: :string, description: 'Type'},
                   links: {
                     type: :object,
@@ -211,7 +211,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
                                   type: :object,
                                   properties: {
                                     type: { type: :string, default: '<%= relation.table_name %>' },
-                                    id: { type: :string, description: '<%= relation_name_camelize %> ID' },
+                                    id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
                                   }
                                 },
                                 description: '<%= t(:related_id, model: relation_name_camelize) %>'
@@ -222,7 +222,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
                                     type: :object,
                                     properties: {
                                       type: { type: :string, default: '<%= relation.table_name %>' },
-                                      id: { type: :string, description: '<%= relation_name_camelize %> ID' },
+                                      id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
                                     },
                                   }
                                 },
@@ -313,7 +313,7 @@ path '/<%= route_resouces %>/{id}' do
                       type: :object,
                       properties: {
                         type: { type: :string, default: '<%= route_resouces %>' },
-                        id: { type: :string },
+                        id: { type: :string, format: :uuid },
                         attributes: {
                           type: :object,
                           properties: {
@@ -336,7 +336,7 @@ path '/<%= route_resouces %>/{id}' do
                                   type: :object,
                                   properties: {
                                     type: { type: :string, default: '<%= relation.table_name %>' },
-                                    id: { type: :string, description: '<%= relation_name_camelize %> ID' },
+                                    id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
                                   },
                                   description: '<%= t(:related_id, model: relation_name_camelize) %>'
                                 },
@@ -347,7 +347,7 @@ path '/<%= route_resouces %>/{id}' do
                                     type: :object,
                                     properties: {
                                       type: { type: :string, default: '<%= relation.table_name %>' },
-                                      id: { type: :string, description: '<%= relation_name_camelize %> ID' },
+                                      id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
                                     },
                                   },
                                   description: '<%= t(:related_ids, model: relation_name_camelize) %>'
