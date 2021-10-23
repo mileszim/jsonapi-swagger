@@ -96,6 +96,10 @@ module Jsonapi
     def relationships
       resource_klass.relationships
     end
+    
+    def fetchable_fields
+      resource_klass.fetchable_fields
+    end
 
     def sortable_fields
       resource_klass.sortable_fields
