@@ -182,62 +182,68 @@ RSpec.describe '<%= resouces_name %>', type: :request do
       parameter name: :data,
                 in: :body,
                 type: :object,
-                properties: {
+                schema: {
+                  type: :object,
+                  properties: {
                   data: {
                     type: :object,
                     properties: {
-                      type: { type: :string, default: '<%= route_resouces %>' },
-                      attributes: {
+                      data: {
                         type: :object,
                         properties: {
+                          'type': { type: :string, default: '<%= route_resouces %>' },
+                          attributes: {
+                            type: :object,
+                            properties: {
     <% creatable_fields.each do |field| -%>
-                      <%= field %>: { type: :<%= columns_with_comment[field][:type] %>, <%if columns_with_comment[field][:is_array] -%> items: { type: :<%= columns_with_comment[field][:items_type] %>},<% end -%>'x-nullable': <%= columns_with_comment[field][:nullable] %>, description: '<%= columns_with_comment[field][:comment] %>'},
+                              <%= field %>: { type: :<%= columns_with_comment[field][:type] %>, <%if columns_with_comment[field][:is_array] -%> items: { type: :<%= columns_with_comment[field][:items_type] %>},<% end -%>'x-nullable': <%= columns_with_comment[field][:nullable] %>, description: '<%= columns_with_comment[field][:comment] %>'},
     <% end -%>
-                }
-                      },
+                            }
+                          },
 <% if relationships.present? -%>
-                      relationships: {
-                        type: :object,
-                        properties: {
+                          relationships: {
+                            type: :object,
+                            properties: {
 <% relationships.each do |relation_name, relation| -%>
   <% relation_name_camelize = relation_name.to_s.camelize -%>
-                        <%= relation_name %>: {
-                          type: :object,
-                          properties: {
-<% if relation.try(:belongs_to?) -%>
-                            data: {
-                              type: :object,
-                              properties: {
-                                type: { type: :string, default: '<%= relation.table_name %>' },
-                                id: { type: :string, description: '<%= relation_name_camelize %> ID' },
-                              },
-                              description: '<%= t(:related_id, model: relation_name_camelize) %>'
-                            },
-<% else -%>
-                            data: {
-                              type: :array,
-                              items: {
+                              <%= relation_name %>: {
                                 type: :object,
                                 properties: {
-                                  type: { type: :string, default: '<%= relation.table_name %>' },
-                                  id: { type: :string, description: '<%= relation_name_camelize %> ID' },
+<% if relation.try(:belongs_to?) -%>
+                                  data: {
+                                    type: :object,
+                                    properties: {
+                                      type: { type: :string, default: '<%= relation.table_name %>' },
+                                      id: { type: :string, description: '<%= relation_name_camelize %> ID' },
+                                    },
+                                    description: '<%= t(:related_id, model: relation_name_camelize) %>'
+                                  },
+<% else -%>
+                                  data: {
+                                    type: :array,
+                                    items: {
+                                      type: :object,
+                                      properties: {
+                                        type: { type: :string, default: '<%= relation.table_name %>' },
+                                        id: { type: :string, description: '<%= relation_name_camelize %> ID' },
+                                      },
+                                    },
+                                    description: '<%= t(:related_ids, model: relation_name_camelize) %>'
+                                  },
+<% end -%>
                                 },
+                                description: '<%= t(:related_ids, model: relation_name_camelize) %>'
                               },
-                              description: '<%= t(:related_ids, model: relation_name_camelize) %>'
-                            },
 <% end -%>
-                          },
-                          description: '<%= t(:related_ids, model: relation_name_camelize) %>'
-                        },
+                            }
+                          }
 <% end -%>
-                      }
-                    }
-<% end -%>
-                  }
+                        }
+                      },
+                    },
+                  },
+                  description: '<%= t(:request_body) %>'
                 },
-              },
-              description: '<%= t(:request_body) %>'
-
       response '201', '<%= t(:create) %>' do
         schema type: :object,
           properties: {
