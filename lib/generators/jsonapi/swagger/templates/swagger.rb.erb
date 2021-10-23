@@ -107,7 +107,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
     get '<%= route_resouces %> <%= t(:detail) %>' do
       tags '<%= route_resouces %>'
       produces 'application/vnd.api+json'
-      parameter name: :id, in: :path, type: :string, format: :uuid, description: 'ID', required: true
+      parameter name: :id, in: :path, type: :string, format: :uuid, description: 'UUID', required: true
 <% if relationships.present? -%>
       parameter name: :include, in: :query, type: :string, description: '<%= t(:include_related_data) %>', required: false
 <% end -%>
@@ -121,7 +121,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
             data: {
                 type: :object,
                 properties: {
-                  id: { type: :string, format: :uuid, description: 'ID'},
+                  id: { type: :string, format: :uuid, description: 'UUID'},
                   type: { type: :string, description: 'Type'},
                   links: {
                     type: :object,
@@ -211,7 +211,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
                                   type: :object,
                                   properties: {
                                     type: { type: :string, default: '<%= relation.table_name %>' },
-                                    id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
+                                    id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> UUID' },
                                   }
                                 },
                                 description: '<%= t(:related_id, model: relation_name_camelize) %>'
@@ -222,7 +222,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
                                     type: :object,
                                     properties: {
                                       type: { type: :string, default: '<%= relation.table_name %>' },
-                                      id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
+                                      id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> UUID' },
                                     },
                                   }
                                 },
@@ -246,7 +246,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
             data: {
                 type: :object,
                 properties: {
-                  id: { type: :string, format: :uuid, description: 'ID'},
+                  id: { type: :string, format: :uuid, description: 'UUID'},
                   type: { type: :string, description: 'Type'},
                   links: {
                     type: :object,
@@ -302,7 +302,7 @@ path '/<%= route_resouces %>/{id}' do
       tags '<%= route_resouces %>'
       consumes 'application/vnd.api+json'
       produces 'application/vnd.api+json'
-      parameter name: :id, in: :path, type: :string, format: :uuid, description: 'ID', required: true
+      parameter name: :id, in: :path, type: :string, format: :uuid, description: 'UUID', required: true
       parameter name: :data,
                 in: :body,
                 type: :object,
@@ -336,7 +336,7 @@ path '/<%= route_resouces %>/{id}' do
                                   type: :object,
                                   properties: {
                                     type: { type: :string, default: '<%= relation.table_name %>' },
-                                    id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
+                                    id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> UUID' },
                                   },
                                   description: '<%= t(:related_id, model: relation_name_camelize) %>'
                                 },
@@ -347,7 +347,7 @@ path '/<%= route_resouces %>/{id}' do
                                     type: :object,
                                     properties: {
                                       type: { type: :string, default: '<%= relation.table_name %>' },
-                                      id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> ID' },
+                                      id: { type: :string, format: :uuid, description: '<%= relation_name_camelize %> UUID' },
                                     },
                                   },
                                   description: '<%= t(:related_ids, model: relation_name_camelize) %>'
@@ -370,7 +370,7 @@ path '/<%= route_resouces %>/{id}' do
             data: {
                 type: :object,
                 properties: {
-                  id: { type: :string, format: :uuid, description: 'ID'},
+                  id: { type: :string, format: :uuid, description: 'UUID'},
                   type: { type: :string, description: 'Type'},
                   links: {
                     type: :object,
@@ -426,7 +426,7 @@ path '/<%= route_resouces %>/{id}' do
     delete '<%= route_resouces %> <%= t(:delete) %>' do
       tags '<%= route_resouces %>'
       produces 'application/vnd.api+json'
-      parameter name: :id, in: :path, type: :string, format: :uuid, description: 'ID', required: true
+      parameter name: :id, in: :path, type: :string, format: :uuid, description: 'UUID', required: true
 
       response '204', '<%= t(:delete) %>' do
         let(:id) { @<%= model_name %>.id }
