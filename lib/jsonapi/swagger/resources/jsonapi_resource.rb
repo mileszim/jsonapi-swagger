@@ -6,7 +6,6 @@ module Jsonapi
 
       def_delegators :@jr, :_attributes, :_relationships, :sortable_fields,
                            :creatable_fields, :updatable_fields, :filters, :mutable?
-      def_delegator :@jr, :fetchable_fields
 
       def initialize(jr)
         @jr = jr
@@ -14,6 +13,10 @@ module Jsonapi
 
       alias attributes _attributes
       alias relationships _relationships
+      
+      def fetchable_fields
+        @jr.fetchable_fields
+      end
     end
   end
 end
