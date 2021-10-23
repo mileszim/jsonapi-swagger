@@ -166,7 +166,10 @@ module Jsonapi
     end
 
     def safe_encode(content)
+      frozen = content.frozen?
+      content = content.dup if frozen
       content&.force_encoding('ASCII-8BIT')
+      content.freeze if frozen
     end
   end
 end
