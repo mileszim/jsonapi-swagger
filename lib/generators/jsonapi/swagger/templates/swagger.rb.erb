@@ -47,7 +47,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
                   attributes: {
                     type: :object,
                     properties: {
-<% fetchable_fields.each_key.each do |attr| -%>
+<% fetchable_fields.each do |attr| -%>
                      <%= attr %>: { type: :<%= columns_with_comment[attr][:type] %>, <%if columns_with_comment[attr][:is_array] -%> items: { type: :<%= columns_with_comment[attr][:items_type] %>},<% end -%>'x-nullable': <%= columns_with_comment[attr][:nullable] %>, description: '<%= columns_with_comment[attr][:comment] %>'},
 <% end -%>
                     },
@@ -133,7 +133,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
                   attributes: {
                     type: :object,
                     properties: {
-<% fetchable_fields.each_key.each do |attr| -%>
+<% fetchable_fields.each do |attr| -%>
                      <%= attr %>: { type: :<%= columns_with_comment[attr][:type] %>, <%if columns_with_comment[attr][:is_array] -%> items: { type: :<%= columns_with_comment[attr][:items_type] %>},<% end -%>'x-nullable': <%= columns_with_comment[attr][:nullable] %>, description: '<%= columns_with_comment[attr][:comment] %>'},
 <% end -%>
                     },
@@ -258,7 +258,7 @@ RSpec.describe '<%= resouces_name %>', type: :request do
                   attributes: {
                     type: :object,
                     properties: {
-<% fetchable_fields.each_key.each do |attr| -%>
+<% fetchable_fields.each do |attr| -%>
                      <%= attr %>: { type: :<%= columns_with_comment[attr][:type] %>, <%if columns_with_comment[attr][:is_array] -%> items: { type: :<%= columns_with_comment[attr][:items_type] %>},<% end -%>'x-nullable': <%= columns_with_comment[attr][:nullable] %>, description: '<%= columns_with_comment[attr][:comment] %>'},
 <% end -%>
                     },
@@ -317,7 +317,7 @@ path '/<%= route_resouces %>/{id}' do
                         attributes: {
                           type: :object,
                           properties: {
-    <% creatable_fields.each do |field| -%>
+    <% updatable_fields.each do |field| -%>
                             <%= field %>: { type: :<%= columns_with_comment[field][:type] %>, <%if columns_with_comment[field][:is_array] -%> items: { type: :<%= columns_with_comment[field][:items_type] %>},<% end -%>'x-nullable': <%= columns_with_comment[field][:nullable] %>, description: '<%= columns_with_comment[field][:comment] %>'},
     <% end -%>
                           }
@@ -382,7 +382,7 @@ path '/<%= route_resouces %>/{id}' do
                   attributes: {
                     type: :object,
                     properties: {
-<% fetchable_fields.each_key.each do |attr| -%>
+<% fetchable_fields.each do |attr| -%>
                      <%= attr %>: { type: :<%= columns_with_comment[attr][:type] %>, <%if columns_with_comment[attr][:is_array] -%> items: { type: :<%= columns_with_comment[attr][:items_type] %>},<% end -%>'x-nullable': <%= columns_with_comment[attr][:nullable] %>, description: '<%= columns_with_comment[attr][:comment] %>'},
 <% end -%>
                     },
