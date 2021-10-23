@@ -360,9 +360,10 @@ path '/<%= route_resouces %>/{id}' do
                           }
 <% end -%>
                       },
-                    },
-                    description: '<%= t(:request_body) %>'
-                  }
+                    }
+                  },
+                  description: '<%= t(:request_body) %>'
+                }
       response '200', '<%= t(:patch) %>' do
         schema type: :object,
           properties: {
